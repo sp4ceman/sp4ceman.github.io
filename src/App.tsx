@@ -3,6 +3,7 @@ import { maxGuesses, seed, urlParam } from "./util";
 import Game from "./Game";
 import { useEffect, useState } from "react";
 import { About } from "./About";
+import { Prize } from "./Prize";
 
 function useSetting<T>(
   key: string,
@@ -33,7 +34,7 @@ const todaySeed =
   now.toLocaleDateString("en-US", { day: "2-digit" });
 
 function App() {
-  type Page = "game" | "about" | "settings";
+  type Page = "game" | "about" | "settings" | "prize";
   const [page, setPage] = useState<Page>("game");
   const prefersDark =
     window.matchMedia &&
@@ -43,7 +44,7 @@ function App() {
   const [difficulty, setDifficulty] = useSetting<number>("difficulty", 0);
   const [keyboard, setKeyboard] = useSetting<string>(
     "keyboard",
-    "qwertyuiop-asdfghjkl-BzxcvbnmE"
+    "qwertyuiop-asdfghjkl-BzxcvbnmE-N?()vsde"
   );
   const [enterLeft, setEnterLeft] = useSetting<boolean>("enter-left", false);
 
@@ -72,7 +73,9 @@ function App() {
   return (
     <div className={"App-container" + (colorBlind ? " color-blind" : "")}>
       <h1>
-        <span
+        worstle
+        scoundrl
+        {/* <span
           style={{
             color: difficulty > 0 ? "#e66" : "inherit",
             fontStyle: difficulty > 1 ? "italic" : "inherit",
@@ -80,7 +83,7 @@ function App() {
         >
           hell
         </span>
-        o wordl
+        o wordl */}
       </h1>
       <div className="top-right">
         {page !== "game" ? (
@@ -88,6 +91,7 @@ function App() {
         ) : (
           <>
             {link("❓", "About", "about")}
+            {link("dd ", "PRIZE", "prize")}
             {link("⚙️", "Settings", "settings")}
           </>
         )}
@@ -100,11 +104,12 @@ function App() {
           visibility: page === "game" ? "visible" : "hidden",
         }}
       >
-        <a href={seed ? "?random" : "?seed=" + todaySeed}>
+        {/* <a href={seed ? "?random" : "?seed=" + todaySeed}>
           {seed ? "Random" : "Today's"}
-        </a>
+        </a> */}
       </div>
       {page === "about" && <About />}
+      {page === "prize" && <Prize />}
       {page === "settings" && (
         <div className="Settings">
           <div className="Settings-setting">
@@ -125,7 +130,7 @@ function App() {
             />
             <label htmlFor="colorblind-setting">High-contrast colors</label>
           </div>
-          <div className="Settings-setting">
+          {/* <div className="Settings-setting">
             <input
               id="difficulty-setting"
               type="range"
@@ -154,8 +159,8 @@ function App() {
                 }
               </div>
             </div>
-          </div>
-          <div className="Settings-setting">
+          </div> */}
+          {/* <div className="Settings-setting">
             <label htmlFor="keyboard-setting">Keyboard layout:</label>
             <select
               name="keyboard-setting"
@@ -163,11 +168,11 @@ function App() {
               value={keyboard}
               onChange={(e) => setKeyboard(e.target.value)}
             >
-              <option value="qwertyuiop-asdfghjkl-BzxcvbnmE">QWERTY</option>
-              <option value="azertyuiop-qsdfghjklm-BwxcvbnE">AZERTY</option>
-              <option value="qwertzuiop-asdfghjkl-ByxcvbnmE">QWERTZ</option>
-              <option value="BpyfgcrlE-aoeuidhtns-qjkxbmwvz">Dvorak</option>
-              <option value="qwfpgjluy-arstdhneio-BzxcvbkmE">Colemak</option>
+              <option value="qwertyuiop-asdfghjkl-BzxcvbnmE-N">QWERTY</option>
+              <option value="azertyuiop-qsdfghjklm-BwxcvbnE-N">AZERTY</option>
+              <option value="qwertzuiop-asdfghjkl-ByxcvbnmE-N">QWERTZ</option>
+              <option value="BpyfgcrlE-aoeuidhtns-qjkxbmwvz-N">Dvorak</option>
+              <option value="qwfpgjluy-arstdhneio-BzxcvbkmE-N">Colemak</option>
             </select>
             <input
               style={{ marginLeft: 20 }}
@@ -177,7 +182,7 @@ function App() {
               onChange={() => setEnterLeft((x: boolean) => !x)}
             />
             <label htmlFor="enter-left-setting">"Enter" on left side</label>
-          </div>
+          </div> */}
         </div>
       )}
       <Game

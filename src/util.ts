@@ -1,4 +1,5 @@
 import dictionary from "./dictionary.json";
+import { AllPossibleWords } from "./wordOfTheDay";
 
 export enum Difficulty {
   Normal,
@@ -9,7 +10,28 @@ export enum Difficulty {
 export const gameName = "hello wordl";
 export const maxGuesses = 6;
 
-export const dictionarySet: Set<string> = new Set(dictionary);
+export const dictionarySet: Set<string> = initDictionary();
+
+function initDictionary() : Set<string>
+{
+  let _dictionarySet = new Set(dictionary);
+  console.log('init dictionary length = ' + _dictionarySet.size);
+
+  for (let index = 0; index < AllPossibleWords.length; index++) {
+    const element = AllPossibleWords[index];
+    _dictionarySet.add(element)
+
+    if (element.indexOf(' ') >= 0)
+    {
+      const subElements = element.split(' ');
+      for (let ii = 0; ii < subElements.length; ii++) {
+        _dictionarySet.add(subElements[ii]);
+      }
+    }
+  }
+  return _dictionarySet;
+
+}
 
 function mulberry32(a: number) {
   return function () {
