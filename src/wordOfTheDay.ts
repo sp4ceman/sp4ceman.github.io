@@ -3,7 +3,7 @@ function getWordOfTheDay()
 
 }
 
-export const WordOfTheDay = "jacob zuma";
+export const WordOfTheDay = "dudu myeni";
 
 export const AllPossibleWords = [
     "jacob zuma",
@@ -11,4 +11,7 @@ export const AllPossibleWords = [
     "regiments",
     "bathabile",
     "anoj singh",
+    "lucky",
+    "montana",
+    "dudu myeni"
 ];
